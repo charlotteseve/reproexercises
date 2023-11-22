@@ -1,0 +1,44 @@
+---
+title: "index"
+format: html
+editor: source
+---
+
+## load packages and functions
+
+```{r}
+devtools::load_all()
+```
+
+## Import each csv file in data/wildfinder
+
+```{r}
+ecoregions <- open_wildfinder_csv("wildfinder-ecoregions_list.csv")
+species <- open_wildfinder_csv("wildfinder-ecoregions_species.csv")
+mammals <- open_wildfinder_csv("wildfinder-mammals_list.csv")
+```
+
+## Select only the Ursidae family
+
+```{r}
+mammals <- select_ursidae(mammals)
+```
+
+## Join dafaframes
+
+```{r}
+final <- join_df(mammals, species, ecoregions)
+```
+
+## Count ecoregions number for each species
+
+```{r}
+spe_ecor <- count_ecor(final)
+```
+
+## Create a graph
+
+```{r}
+plot_sp_count <- plot_counts(spe_ecor)
+plot_sp_count
+```

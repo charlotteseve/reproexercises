@@ -33,6 +33,9 @@ devtools::load_all(here::here())
 # Execute script to download data
 source(here::here("analyses","download-data.R"))
 
+# index.qrt to index.html
+quarto::quarto_render()
+
 
 
 
